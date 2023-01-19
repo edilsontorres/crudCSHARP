@@ -19,6 +19,7 @@ namespace FirstApi.Controllers
             this.dc = context;
         }
 
+        //Rota Cadastro
         [HttpPost("api")]
         public async Task<ActionResult> cadastrar([FromBody] Pessoa p)
         {
@@ -28,6 +29,7 @@ namespace FirstApi.Controllers
             return Created("Objeto Criado", p);
         }
 
+        //Rota lista
         [HttpGet("api")]
         public async Task<ActionResult> listar()
         {
@@ -35,16 +37,16 @@ namespace FirstApi.Controllers
             return Ok(dados);
         }
 
+        //Rota filtro
         [HttpGet("api/{id}")]
-
         public Pessoa filtrar(int id)
         {
             Pessoa p = dc.pessoa.Find(id);
             return p;
         }
 
+        //Rota edição
         [HttpPut("api")]
-
         public async Task<ActionResult> editar([FromBody] Pessoa p)
         {
             dc.pessoa.Update(p);
@@ -53,8 +55,8 @@ namespace FirstApi.Controllers
             return Ok(p);
         }
 
+        //Rota deletar
         [HttpDelete("api/{id}")]
-
         public async Task<ActionResult> remover(int id)
         {
             Pessoa p = filtrar(id);
